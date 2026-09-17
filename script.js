@@ -545,6 +545,44 @@ function updateWishlistBadge() {
     }
 }
 
+/**
+ * Generates a clean, consistent unique identifier for a product variant.
+ * Format: productId + '__' + encodeURIComponent(colorName)
+ */
+function getVariantUniqueId(baseId, title, colorName) {
+    const cleanBase = (baseId || (title ? title.trim().replace(/\s+/g, '-').toLowerCase() : 'product'));
+    const cleanColor = colorName ? encodeURIComponent(colorName.trim()) : '';
+    return cleanColor ? `${cleanBase}__${cleanColor}` : cleanBase;
+}
+
+/**
+ * Checks if a stored wishlist item matches a given base product and color variant.
+ */
+function isItemMatchingVariant(item, baseId, title, colorName) {
+    if (!item) return false;
+    const targetColor = (colorName || '').trim();
+    const itemColor = (item.selectedColor?.name || '').trim();
+
+    // Check strict variant ID matches (both new format __ and previous - format)
+    const targetIdNew = getVariantUniqueId(baseId, title, targetColor);
+    const targetIdOld = `${baseId}-${encodeURIComponent(targetColor)}`;
+    if (item.id === targetIdNew || item.id === targetIdOld) {
+        return true;
+    }
+
+    // Match by product identity (baseId or title) AND exact color name
+    const itemBaseId = item.baseId || (item.id ? item.id.split('__')[0].split('-')[0] : '');
+    const matchesProduct = (baseId && itemBaseId === baseId) || (title && item.title === title);
+    if (matchesProduct) {
+        if (targetColor) {
+            return itemColor === targetColor;
+        }
+        return !itemColor;
+    }
+
+    return false;
+}
+
 function extractProductDataFromCard(card) {
     if (!card) return null;
     const titleEl = card.querySelector('.product-title');
@@ -563,8 +601,8 @@ function extractProductDataFromCard(card) {
     const badge = badgeEl ? badgeEl.textContent.trim() : '';
 
     const selectedColor = getActiveColorFromCard(card);
-    const colorSlug = selectedColor && selectedColor.name ? '-' + encodeURIComponent(selectedColor.name.trim()) : '';
-    const id = baseId + colorSlug;
+    const colorName = selectedColor && selectedColor.name ? selectedColor.name.trim() : '';
+    const id = getVariantUniqueId(baseId, title, colorName);
 
     return { id, baseId, title, price, oldPrice, img, category, badge, selectedColor };
 }
@@ -572,12 +610,11 @@ function extractProductDataFromCard(card) {
 function toggleWishlistProduct(productData, btnElement) {
     if (!productData) return;
     let list = getWishlist();
-    const targetColorName = productData.selectedColor?.name || '';
-    const index = list.findIndex(item => {
-        if (item.id === productData.id) return true;
-        const itemColorName = item.selectedColor?.name || '';
-        return item.title === productData.title && itemColorName === targetColorName;
-    });
+    const targetColorName = productData.selectedColor?.name?.trim() || '';
+    const targetBaseId = productData.baseId;
+    const targetTitle = productData.title;
+
+    const index = list.findIndex(item => isItemMatchingVariant(item, targetBaseId, targetTitle, targetColorName));
 
     const colorText = targetColorName ? ` (${targetColorName})` : '';
 
@@ -600,9 +637,6 @@ function toggleWishlistProduct(productData, btnElement) {
 
 function syncWishlistButtons() {
     const list = getWishlist();
-    const favIds = new Set(list.map(item => item.id));
-    const favBaseIds = new Set(list.map(item => item.baseId || item.id));
-    const favTitles = new Set(list.map(item => item.title));
 
     const cards = document.querySelectorAll('.product-card');
     cards.forEach(card => {
@@ -613,13 +647,20 @@ function syncWishlistButtons() {
         const title = titleEl ? titleEl.textContent.trim() : '';
 
         const activeColor = getActiveColorFromCard(card);
-        const colorSlug = activeColor && activeColor.name ? '-' + encodeURIComponent(activeColor.name.trim()) : '';
-        const specificId = (baseId || title.replace(/\s+/g, '-').toLowerCase()) + colorSlug;
+        const activeColorName = activeColor?.name ? activeColor.name.trim() : '';
 
-        if (favIds.has(specificId) || (baseId && favBaseIds.has(baseId)) || (title && favTitles.has(title))) {
+        // Check strictly whether THIS specific newly selected color is favorited
+        const isFavorited = list.some(item => isItemMatchingVariant(item, baseId, title, activeColorName));
+
+        if (isFavorited) {
             btn.classList.add('active');
+            btn.setAttribute('aria-label', `إزالة ${title} (${activeColorName}) من المفضلة`);
+            btn.setAttribute('title', `إزالة من المفضلة (${activeColorName})`);
         } else {
+            // Reset heart icon to inactive state
             btn.classList.remove('active');
+            btn.setAttribute('aria-label', `إضافة ${title} (${activeColorName}) إلى المفضلة`);
+            btn.setAttribute('title', `إضافة إلى المفضلة (${activeColorName})`);
         }
     });
 
@@ -727,8 +768,18 @@ function renderFavoritesPage() {
 
 function removeFromFavoritesPage(id) {
     let list = getWishlist();
-    const itemToRemove = list.find(item => item.id === id || item.title === id);
-    list = list.filter(item => item.id !== id && item.title !== id);
+    const index = list.findIndex(item => item.id === id);
+    let itemToRemove = null;
+    if (index > -1) {
+        itemToRemove = list[index];
+        list.splice(index, 1);
+    } else {
+        const fallbackIndex = list.findIndex(item => item.title === id || decodeURIComponent(item.id || '') === id);
+        if (fallbackIndex > -1) {
+            itemToRemove = list[fallbackIndex];
+            list.splice(fallbackIndex, 1);
+        }
+    }
     saveWishlist(list);
 
     const card = document.querySelector(`.fav-card[data-id="${id}"]`);
@@ -753,7 +804,7 @@ function removeFromFavoritesPage(id) {
 
 function addFavoriteItemToCart(id) {
     const list = getWishlist();
-    const item = list.find(prod => prod.id === id || prod.title === id);
+    const item = list.find(prod => prod.id === id) || list.find(prod => prod.title === id || decodeURIComponent(prod.id || '') === id);
     if (!item) return;
 
     addToCart(item.title, item.price, item.img, item.selectedColor);

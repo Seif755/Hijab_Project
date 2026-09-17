@@ -1806,15 +1806,51 @@ footer.site-footer {
         padding: 0 16px;
         width: 100%;
         max-width: 100%;
+        box-sizing: border-box;
+        margin: 0 auto;
     }
 
-    /* Navigation Drawer on Mobile */
+    /* Header & Navigation on Mobile */
+    header.site-header {
+        width: 100%;
+        box-sizing: border-box;
+        overflow-x: clip;
+    }
+
+    header.site-header .container {
+        padding: 0 16px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
     .nav-inner {
-        height: 72px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 68px;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
+        margin: 0;
+        text-decoration: none;
     }
 
     .brand-title {
         font-size: 20px;
+        line-height: 1.2;
+    }
+
+    .brand-subtitle {
+        font-size: 11px;
     }
 
     .logo-monogram,
@@ -1822,15 +1858,58 @@ footer.site-footer {
         width: 40px;
         height: 40px;
         font-size: 17px;
+        flex-shrink: 0;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .action-btn,
+    .mobile-toggle {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        min-height: 38px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .action-btn svg,
+    .mobile-toggle svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .cart-badge,
+    .wishlist-badge {
+        min-width: 18px;
+        height: 18px;
+        font-size: 10.5px;
+        top: -3px;
+        left: -3px;
+        padding: 0 3px;
     }
 
     .nav-menu {
         position: fixed;
-        top: 72px;
+        top: 68px;
         right: -100%;
         width: 270px;
         max-width: 80vw;
-        height: calc(100vh - 72px);
+        height: calc(100vh - 68px);
         background-color: var(--surface-white);
         flex-direction: column;
         align-items: flex-start;
@@ -2192,6 +2271,131 @@ footer.site-footer {
 
     .cart-drawer {
         max-width: 100%;
+    }
+}
+
+/* Compact Mobile Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    header.site-header {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    header.site-header .container {
+        padding: 0 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .nav-inner {
+        height: 62px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .brand-logo {
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    .logo-monogram,
+    .logo-monogram-img {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+        flex-shrink: 0;
+    }
+
+    .brand-title {
+        font-size: 17px;
+        line-height: 1.15;
+    }
+
+    /* Hide long subtitle on mobile so brand and all 4 action buttons fit comfortably without crowding */
+    .brand-subtitle {
+        display: none;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+        flex-shrink: 0;
+    }
+
+    .action-btn,
+    .mobile-toggle {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+        min-height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .action-btn svg,
+    .mobile-toggle svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .cart-badge,
+    .wishlist-badge {
+        min-width: 16px;
+        height: 16px;
+        font-size: 10px;
+        top: -3px;
+        left: -3px;
+        padding: 0 2px;
+    }
+}
+
+/* Very Narrow Mobile Devices (max-width: 360px) */
+@media (max-width: 360px) {
+    header.site-header .container {
+        padding: 0 10px;
+    }
+
+    .brand-logo {
+        gap: 6px;
+    }
+
+    .logo-monogram,
+    .logo-monogram-img {
+        width: 33px;
+        height: 33px;
+    }
+
+    .brand-title {
+        font-size: 15.5px;
+    }
+
+    .nav-actions {
+        gap: 4px;
+    }
+
+    .action-btn,
+    .mobile-toggle {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    .action-btn svg,
+    .mobile-toggle svg {
+        width: 15px;
+        height: 15px;
     }
 }
 
