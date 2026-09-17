@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://hebahijab.com/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/hero_hijab.jpg</image:loc>
+      <image:title>تشكيلة هبة حجاب الفاخرة - ربيع وصيف 2026</image:title>
+      <image:caption>أرقى تصاميم الحجاب والخمار وأزياء المرأة المحتشمة من هبة حجاب</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/product_chiffon.jpg</image:loc>
+      <image:title>طرحة شيفون كريب كشميري فاخرة</image:title>
+      <image:caption>طرحة شيفون كريب كشميري ناعمة بلون وردي ترابي أنيق</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/product_khimar.jpg</image:loc>
+      <image:title>خمار إسلامي انسيابي كريب ملكي</image:title>
+      <image:caption>خمار إسلامي كريب فاخر انسيابي بحشمة راقية ولون بيج نود</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/product_cotton.jpg</image:loc>
+      <image:title>حجاب قطن ليزر تركي مريح</image:title>
+      <image:caption>حجاب قطن طبيعي معالج لا ينزلق ومريح للاستخدام اليومي</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/product_silk.jpg</image:loc>
+      <image:title>طرحة حرير ساتان ملكي ناعم</image:title>
+      <image:caption>طرحة حرير وساتان فاخرة للمناسبات والسهرات بلون الشامبين والروز جولد</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/fabric_detail.jpg</image:loc>
+      <image:title>تفاصيل وجودة أقمشة هبة حجاب</image:title>
+      <image:caption>أقمشة كريب وشيفون وحرير طبيعية 100% لا تنزلق</image:caption>
+    </image:image>
+  </url>
+</urlset>
