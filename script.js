@@ -7,6 +7,7 @@ let cartTotal = 0;
 let cartItemsCount = 0;
 
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     initNavigation();
     initFilterTabs();
     initWishlist();
@@ -410,5 +411,74 @@ function handleSubscribe(e) {
     if (input && input.value) {
         showToast('شكراً لانضمامكِ! كود الخصم في طريقه لبريدكِ ✨');
         input.value = '';
+    }
+}
+
+/* ==========================================================================
+   Theme Management (Dark / Light Mode)
+   ========================================================================== */
+
+function initTheme() {
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const html = document.documentElement;
+
+    // Synchronize body class with html element if set early by FOUC script
+    if (html.classList.contains('dark-theme')) {
+        document.body.classList.add('dark-theme');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = html.classList.contains('dark-theme') || html.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+
+            if (newTheme === 'dark') {
+                html.classList.add('dark-theme');
+                document.body.classList.add('dark-theme');
+                html.setAttribute('data-theme', 'dark');
+                try {
+                    localStorage.setItem('heba_theme', 'dark');
+                } catch (err) {
+                    console.warn('LocalStorage not accessible:', err);
+                }
+                showToast('تم تفعيل الوضع الليلي 🌙');
+            } else {
+                html.classList.remove('dark-theme');
+                document.body.classList.remove('dark-theme');
+                html.setAttribute('data-theme', 'light');
+                try {
+                    localStorage.setItem('heba_theme', 'light');
+                } catch (err) {
+                    console.warn('LocalStorage not accessible:', err);
+                }
+                showToast('تم تفعيل الوضع النهاري ☀️');
+            }
+        });
+    }
+
+    // Listen to OS system color-scheme changes if user has no saved preference
+    if (window.matchMedia) {
+        try {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                let savedTheme = null;
+                try {
+                    savedTheme = localStorage.getItem('heba_theme');
+                } catch (err) {}
+
+                if (!savedTheme) {
+                    if (e.matches) {
+                        html.classList.add('dark-theme');
+                        document.body.classList.add('dark-theme');
+                        html.setAttribute('data-theme', 'dark');
+                    } else {
+                        html.classList.remove('dark-theme');
+                        document.body.classList.remove('dark-theme');
+                        html.setAttribute('data-theme', 'light');
+                    }
+                }
+            });
+        } catch (err) {
+            console.warn('Media query listener error:', err);
+        }
     }
 }
