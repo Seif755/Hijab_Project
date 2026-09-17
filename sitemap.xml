@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
@@ -36,5 +36,11 @@
       <image:title>تفاصيل وجودة أقمشة هبة حجاب</image:title>
       <image:caption>أقمشة كريب وشيفون وحرير طبيعية 100% لا تنزلق</image:caption>
     </image:image>
+  </url>
+  <url>
+    <loc>https://hebahijab.com/favorites.html</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

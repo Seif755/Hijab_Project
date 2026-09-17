@@ -260,8 +260,9 @@
         </nav>
         <!-- Action Buttons: Wishlist & Cart -->
         <div class="nav-actions">
-          <!-- Wishlist Icon -->
-          <button
+          <!-- Wishlist Icon (Redirects to favorites.html) -->
+          <a
+            href="favorites.html"
             class="action-btn"
             id="wishlistHeaderBtn"
             aria-label="المفضلة"
@@ -278,7 +279,8 @@
                 d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
               ></path>
             </svg>
-          </button>
+            <span class="cart-badge wishlist-badge" id="wishlistCount" style="display: none;">0</span>
+          </a>
           <!-- Theme Toggle (Dark/Light Mode) -->
           <button
             class="action-btn theme-toggle-btn"
@@ -539,7 +541,7 @@
           <!-- Product Grid (4 Minimalist Premium Cards) -->
           <div class="product-grid" id="productGrid">
             <!-- Product Card 1: Chiffon Hijab -->
-            <article class="product-card" data-category="chiffon">
+            <article class="product-card" data-category="chiffon" data-id="chiffon-crepe">
               <div class="product-thumb-wrapper">
                 <span class="product-badge">الأكثر مبيعاً</span>
                 <button
@@ -594,21 +596,41 @@
                     class="swatch active"
                     style="background-color: #b57a70"
                     title="وردي ترابي"
+                    data-color-name="وردي ترابي"
+                    data-img="images/product_chiffon.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون وردي ترابي"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #d9b8b0"
                     title="كشمير فاتح"
+                    data-color-name="كشمير فاتح"
+                    data-img="images/product_chiffon_cashmere.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون كشمير فاتح"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #ece0d6"
                     title="بيج هادئ"
+                    data-color-name="بيج هادئ"
+                    data-img="images/product_chiffon_beige.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون بيج هادئ"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #5c4744"
                     title="بني شيكولاتة"
+                    data-color-name="بني شيكولاتة"
+                    data-img="images/product_chiffon_brown.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون بني شيكولاتة"
                   ></span>
                 </div>
                 <div class="product-footer">
@@ -640,7 +662,7 @@
             </article>
 
             <!-- Product Card 2: Flowing Khimar -->
-            <article class="product-card" data-category="khimar">
+            <article class="product-card" data-category="khimar" data-id="flowing-khimar">
               <div class="product-thumb-wrapper">
                 <span class="product-badge">حشمة راقية</span>
                 <button
@@ -695,16 +717,31 @@
                     class="swatch active"
                     style="background-color: #d8c2b0"
                     title="بيج نود"
+                    data-color-name="بيج نود"
+                    data-img="images/product_khimar.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون بيج نود"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #b57a70"
                     title="كشمير"
+                    data-color-name="كشمير"
+                    data-img="images/product_khimar_cashmere.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون كشمير"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #4a3b39"
                     title="بني دافئ"
+                    data-color-name="بني دافئ"
+                    data-img="images/product_khimar_brown.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون بني دافئ"
                   ></span>
                 </div>
                 <div class="product-footer">
@@ -736,7 +773,7 @@
             </article>
 
             <!-- Product Card 3: Premium Cotton Hijab -->
-            <article class="product-card" data-category="cotton">
+            <article class="product-card" data-category="cotton" data-id="cotton-hijab">
               <div class="product-thumb-wrapper">
                 <span class="product-badge">عملي ويومي</span>
                 <button
@@ -791,16 +828,31 @@
                     class="swatch active"
                     style="background-color: #faf6f3"
                     title="أوف وايت / كريم"
+                    data-color-name="أوف وايت / كريم"
+                    data-img="images/product_cotton.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون أوف وايت / كريم"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #b57a70"
                     title="كشمير وردي"
+                    data-color-name="كشمير وردي"
+                    data-img="images/product_cotton_cashmere.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون كشمير وردي"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #a89487"
                     title="رمادي دافئ"
+                    data-color-name="رمادي دافئ"
+                    data-img="images/product_cotton_gray.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون رمادي دافئ"
                   ></span>
                 </div>
                 <div class="product-footer">
@@ -831,7 +883,7 @@
             </article>
 
             <!-- Product Card 4: Silk Satin Scarf -->
-            <article class="product-card" data-category="silk">
+            <article class="product-card" data-category="silk" data-id="silk-satin">
               <div class="product-thumb-wrapper">
                 <span class="product-badge">حرير خالص</span>
                 <button
@@ -886,16 +938,31 @@
                     class="swatch active"
                     style="background-color: #e5b9a8"
                     title="روز جولد"
+                    data-color-name="روز جولد"
+                    data-img="images/product_silk.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون روز جولد"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #d1b89d"
                     title="شامبين كريمي"
+                    data-color-name="شامبين كريمي"
+                    data-img="images/product_silk_champagne.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون شامبين كريمي"
                   ></span>
                   <span
                     class="swatch"
                     style="background-color: #4a3b39"
                     title="بني قهوة دافئ"
+                    data-color-name="بني قهوة دافئ"
+                    data-img="images/product_silk_brown.jpg"
+                    role="button"
+                    tabindex="0"
+                    aria-label="لون بني قهوة دافئ"
                   ></span>
                 </div>
                 <div class="product-footer">
