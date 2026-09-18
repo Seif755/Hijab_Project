@@ -1069,6 +1069,11 @@ header.site-header {
     -webkit-tap-highlight-color: transparent;
 }
 
+.swatch[style*="#ffffff"],
+.swatch[style*="#FFFFFF"] {
+    border: 1.5px solid rgba(0, 0, 0, 0.22);
+}
+
 .swatch:hover {
     transform: scale(1.15);
 }
@@ -2428,6 +2433,11 @@ footer.site-footer {
 [data-theme="dark"] .swatch,
 .dark-theme .swatch {
     border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .swatch[style*="#000000"],
+.dark-theme .swatch[style*="#000000"] {
+    border: 1.5px solid rgba(255, 255, 255, 0.38);
 }
 
 [data-theme="dark"] .item-color-dot,
