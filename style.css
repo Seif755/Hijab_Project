@@ -884,6 +884,7 @@ header.site-header {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
 }
 
@@ -897,17 +898,22 @@ header.site-header {
 .product-thumb-wrapper {
     position: relative;
     width: 100%;
-    height: 310px;
+    aspect-ratio: 3 / 4;
+    height: auto;
     border-radius: calc(var(--radius-lg) - 6px);
     overflow: hidden;
     background-color: var(--secondary-color);
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .product-thumb-wrapper img {
     width: 100%;
     height: 100%;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: top center;
+    display: block;
     transition: transform 0.6s ease, opacity 0.22s ease-in-out;
 }
 
@@ -1037,6 +1043,11 @@ header.site-header {
     color: var(--text-color);
     margin-bottom: 8px;
     line-height: 1.4;
+    min-height: 44px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     transition: color 0.2s;
 }
 
@@ -2117,11 +2128,32 @@ footer.site-footer {
         grid-template-columns: 1fr;
         gap: 22px;
         max-width: 360px;
+        width: 100%;
+        margin: 0 auto;
+        align-items: stretch;
+    }
+
+    .product-card {
+        width: 100%;
+        max-width: 360px;
+        height: 100%;
         margin: 0 auto;
     }
 
     .product-thumb-wrapper {
-        height: 280px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 3 / 4;
+        flex-shrink: 0;
+    }
+
+    .product-thumb-wrapper img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
     }
 
     .quick-add-overlay {
@@ -2512,6 +2544,7 @@ footer.site-footer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 320px));
     justify-content: center;
+    align-items: stretch;
     gap: 24px;
     width: 100%;
     max-width: 100%;
@@ -2531,6 +2564,7 @@ footer.site-footer {
     position: relative;
     width: 100%;
     max-width: 320px;
+    height: 100%;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -2544,16 +2578,18 @@ footer.site-footer {
 .fav-card-thumb-wrap {
     position: relative;
     width: 100%;
-    height: 310px;
-    max-height: 330px;
+    aspect-ratio: 3 / 4;
+    height: auto;
     overflow: hidden;
     background-color: var(--secondary-dark);
+    flex-shrink: 0;
     box-sizing: border-box;
 }
 
 .fav-card-thumb-wrap img {
     width: 100%;
     height: 100%;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: top center;
     display: block;
@@ -2603,6 +2639,11 @@ footer.site-footer {
     color: var(--text-color);
     margin-bottom: 6px;
     line-height: 1.35;
+    min-height: 44px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .fav-card-color {
@@ -2818,7 +2859,7 @@ footer.site-footer {
 }
 
 /* Mobile Responsiveness for Favorites */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .favorites-hero {
         padding: 30px 0 20px;
     }
@@ -2826,14 +2867,32 @@ footer.site-footer {
         padding: 20px 0 45px;
     }
     .favorites-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 360px;
+        width: 100%;
+        margin: 0 auto;
+        align-items: stretch;
     }
     .fav-card {
-        max-width: 100%;
+        width: 100%;
+        max-width: 360px;
+        height: 100%;
+        margin: 0 auto;
     }
     .fav-card-thumb-wrap {
-        height: 290px;
-        max-height: 310px;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        aspect-ratio: 3 / 4;
+        flex-shrink: 0;
+    }
+    .fav-card-thumb-wrap img {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        object-position: top center;
+        display: block;
     }
 }

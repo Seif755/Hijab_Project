@@ -36,6 +36,16 @@
       <image:title>تفاصيل وجودة أقمشة هبة حجاب</image:title>
       <image:caption>أقمشة كريب وشيفون وحرير طبيعية 100% لا تنزلق</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/product_french_khimar.jpg</image:loc>
+      <image:title>خمار فرنسي فاخر ذو طبقات</image:title>
+      <image:caption>خمار فرنسي كريب فاخر ذو طبقات متدرجة وقصة مثلثة ساتر وأنيق</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hebahijab.com/images/product_malaysian_khimar.jpg</image:loc>
+      <image:title>خمار ماليزي انسيابي كريب</image:title>
+      <image:caption>خمار ماليزي انسيابي كريب ناعم بطبقات متدرجة أنيقة وراحة استثنائية</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hebahijab.com/favorites.html</loc>
