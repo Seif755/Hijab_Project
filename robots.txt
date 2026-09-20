@@ -1,0 +1,9 @@
+﻿# robots.txt for Heba Hijab (هبة حجاب)
+User-agent: *
+Allow: /
+
+# Disallow administrative or temporary files
+Disallow: /images/New%20Text%20Document.txt
+
+# XML Sitemap location
+Sitemap: https://hebahijab.com/sitemap.xml
