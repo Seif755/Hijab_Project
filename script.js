@@ -280,7 +280,7 @@ function addProductFromCard(button) {
 
     const title = titleEl ? titleEl.textContent.trim() : 'قطعة حجاب فاخرة';
     const price = priceEl ? priceEl.textContent.trim() : '180';
-    const img = imgEl ? imgEl.src : 'images/product_chiffon.jpg';
+    const img = imgEl ? imgEl.src : 'images/placeholder.svg';
     const selectedColor = getActiveColorFromCard(card);
 
     addToCart(title, price, img, selectedColor);
@@ -1209,7 +1209,7 @@ function extractProductDataFromCard(card) {
     const baseId = card.getAttribute('data-id') || title.replace(/\s+/g, '-').toLowerCase();
     const price = priceEl ? priceEl.textContent.trim() : '٢٢٠ ج.م';
     const oldPrice = oldPriceEl ? oldPriceEl.textContent.trim() : '';
-    const img = imgEl ? (imgEl.getAttribute('src') || imgEl.src) : 'images/product_chiffon.jpg';
+    const img = imgEl ? (imgEl.getAttribute('src') || imgEl.src) : 'images/placeholder.svg';
     const category = categoryEl ? categoryEl.textContent.trim() : 'أزياء محتشمة';
     const badge = badgeEl ? badgeEl.textContent.trim() : '';
 
